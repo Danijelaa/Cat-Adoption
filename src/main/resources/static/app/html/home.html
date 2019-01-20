@@ -1,0 +1,171 @@
+<div ng-controller="homeController">
+	<br/><br/>
+	<div class="row">
+		<div class="col-lg-6 col-md-8 col-sm-6 col-xs-12" id="imageSearch">
+			<h3>Find cat</h3>
+			<form class="col-xs-7">
+				<div class="form-group">
+					<label for="locationP">Location</label>
+					<select ng-model="locationSearch" id="locationP" class="form-control">
+						<option ng-repeat="l in locations" value="{{l.id}}">{{l.city}}</option>
+					</select>
+				</div>
+				<div class="row">
+					<div class="form-group col-xs-6">
+						<label for="breedP">Breed</label>
+						<select ng-model="breedSearch" id="breedP" class="form-control">
+							<option ng-repeat="b in breeds" value="{{b.id}}">{{b.title}}</option>
+						</select>
+					</div>
+					<div class="form-group col-xs-6">
+						<label for="sexP">Sex</label>
+						<select ng-model="sexSearch" id="sexP" class="form-control">
+							<option value="male">male</option>
+							<option value="female">female</option>
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-xs-6">
+						<label for="ageP">Age</label>
+						<select ng-model="ageSearch" id="ageP" class="form-control">
+							<option ng-repeat="a in ages" value="{{a.id}}">{{a.title}}</option>
+						</select>
+					</div>
+					<div class="form-group col-xs-6">
+						<label for="colorP">Color</label>
+						<select ng-model="colorSearch" id="colorP" class="form-control">
+							<option ng-repeat="c in colors" value="{{c.id}}">{{c.title}}</option>
+						</select>
+					</div>
+				</div>
+				<button ng-click="search()" class="btn btn-primary">Search</button> <button ng-click="reset()"  class="btn btn-success">Reset</button><br><br>
+			</form>
+		</div>
+
+
+<!-- 		<div class="col-lg-5 col-md-7 col-sm-5 col-xs-11 margina-lijeva" id="pozadinaDodavanje">
+			<h3>Dodavanje maca</h3>
+			<form enctype="multipart/form-data">
+				<div class="row">
+					<div class="form-group col-xs-6">
+						<label for="imeD">Ime</label>
+						<input type="text" ng-model="novaMaca.ime" id="imeD" class="form-control">
+					</div>
+					<div class="form-group col-xs-3">
+						<label for="polD">Pol</label>
+						<select ng-model="novaMaca.pol" id="polD" class="form-control">
+							<option value="muzjak">mužjak</option>
+							<option value="zenka">ženka</option>
+						</select>
+					</div>
+					<div class="form-group col-xs-3">
+						<label for="lokacijaD">Lokacija</label>
+						<select ng-model="novaMaca.lokacijaId" id="lokacijaD" class="form-control">
+							<option ng-repeat="l in lokacije" value="{{l.id}}">{{l.grad}}</option>
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-xs-4">
+						<label for="rasaD">Rasa</label>
+						<select ng-model="novaMaca.rasaId" id="rasaD" class="form-control">
+							<option ng-repeat="r in rase" value="{{r.id}}">{{r.naziv}}</option>
+						</select>
+					</div>
+					<div class="form-group col-xs-4">
+						<label for="starostD">Starost</label>
+						<select ng-model="novaMaca.starostId" id="starostD" class="form-control">
+							<option ng-repeat="s in starosti" value="{{s.id}}">{{s.naziv}}</option>
+						</select>
+					</div>
+					<div class="form-group col-xs-4">
+						<label for="bojaD">Boja</label>
+						<select ng-model="novaMaca.bojaId" id="bojaD" class="form-control">
+							<option ng-repeat="b in boje" value="{{b.id}}">{{b.naziv}}</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="opisD">Kratak opis</label>
+					<textarea ng-model="novaMaca.opis" id="opisD" class="form-control"></textarea>
+				</div>				
+				<div class="form-group">
+					<label for="slikaD">Slika</label>
+					<input type="file" id="slikaD" accept="image/*" class="form-control-file">
+				</div>
+				<button ng-click="dodaj()" class="btn">Dodaj</button><br><br>
+			</form>
+		</div> -->
+	</div>
+
+<!-- 	<form enctype="multipart/form-data" name="formaDodavanje" action="/api/mace" method="post">
+
+		<label>Ime</label>
+		<input type="text" name="ime">
+		<label>Kratak opis</label>
+		<input type="text" name="opis">
+		<label>Lokacija</label>
+		<select name="lokacijaId">
+			<option ng-repeat="l in lokacije" value="{{l.id}}">{{l.grad}}</option>
+		</select>
+
+		<label>Rasa</label>
+		<select name="rasaId">
+			<option ng-repeat="r in rase" value="{{r.id}}">{{r.naziv}}</option>
+		</select>
+
+		<label>Pol</label>
+		<select name="pol">
+			<option value="muski">muÅ¡ki</option>
+			<option value="zenski">Å¾enski</option>
+		</select>
+
+		<label>Starost</label>
+		<select name="starostId">
+			<option ng-repeat="s in starosti" value="{{s.id}}">{{s.naziv}}</option>
+		</select>
+
+		<label>Boja</label>
+		<select name="bojaId">
+			<option ng-repeat="b in boje" value="{{b.id}}">{{b.naziv}}</option>
+		</select>
+		<label>Slika</label>
+		<input type="file" name="slika">
+		<input type="submit" value="Dodaj macu">
+	</form>
+
+	<br/><br/><br/> -->
+
+<!-- 	<form enctype="multipart/form-data">
+		<label>Proba sa slikom</label>
+		<input type="file" name="slika" id="fajl">
+		<button ng-click="dodajSliku()">PoÅ¡alji sliku</button>
+	</form> -->
+
+	<br/>
+	<div class="row">
+		<h3>Cats waiting to be adopted</h3><br>
+		<div ng-repeat="c in cats" class="list col-xs-3" id="{{m.id}}">						
+			<table align="center">
+				<tr>
+					<td><img ng-src="data:image/jpeg;base64,{{c.image}}" id="imageList" class="img-responsive"></td>
+				</tr>
+				<tr>
+					<td><h4>{{c.name}}</h4></td>
+				</tr>
+				<tr>
+					<td>{{c.sex}}, {{c.locationCity}}</td>
+				</tr>
+				<tr>
+					<th><button type="button" ng-click="moreInfo(c.id)" class="btn btn-sm">More info</button></th>
+				</tr>
+			</table>
+		</div>
+		<div id="newPage">
+			<button ng-click="changePage(-1)" ng-disabled="pageNum==0" class="btn btn-primary btn-lg">Prev</button> <button ng-click="changePage(1)" ng-disabled="pageNum==totalPages-1" class="btn btn-primary btn-lg">Next</button>
+		</div>
+	</div>
+	<br/><br/><br/>
+	
+</div>

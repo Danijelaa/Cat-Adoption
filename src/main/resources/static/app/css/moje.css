@@ -1,0 +1,38 @@
+#imageSearch{
+	background-image: url('/app/maca.jpg');
+}
+.margin-left{
+	margin-left: 50px;
+}
+#backgroundAdd{
+	background-image: linear-gradient(white, grey);
+}
+.list{
+	float: left; 
+	margin-right: 30px; 
+	margin-bottom: 30px; 
+	border: 1px solid silver; 
+	border-radius: 6px;
+	padding: 10px;
+	box-shadow:  10px 10px 40px grey;
+}
+#imageList{
+	width: 200px;
+	height:200px;
+	border-radius: 6px;
+}
+#newPage{
+	clear: left;
+}
+#tableInfo td{
+	width: 100%;
+	text-align: right;
+}
+#infoUpdate{
+	box-shadow: 10px 10px 40px grey;
+	padding: 20px;
+	width: 400px;
+	font-size: 20px;
+	border-radius: 6px;
+	text-align: center;
+}

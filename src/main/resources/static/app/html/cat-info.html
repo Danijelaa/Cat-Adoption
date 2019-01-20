@@ -1,0 +1,39 @@
+<div ng-controller="infoController">
+	<h3>My name is {{cat.name}}</h3>
+	<div>
+		<img ng-src="data:image/jpeg;base64,{{cat.image}}" width="400">
+	</div><br>
+	<div id="infoUpdate">
+		<h4>About me</h4>
+		<table id="tableInfo">			
+			<tr>
+				<th>Sex</th>
+				<td>{{cat.sex}}</td>
+			</tr>
+			<tr>
+				<th>Location</th>
+				<td>{{cat.locationCity}}</td>
+			</tr>
+			<tr>
+				<th>Age</th>
+				<td>{{cat.ageTitle}}</td>
+			</tr>
+			<tr>
+				<th>Breed</th>
+				<td>{{cat.breedTitle}}</td>
+			</tr>
+			<tr>
+				<th>Color</th>
+				<td>{{cat.colorTitle}}</td>
+			</tr>
+		</table>
+	</div><br>
+	<div style="width: 400px">
+		<h4>Short description</h4>
+		<p>{{cat.description}}</p>
+	</div><br>
+	<div>
+		<p style="font-style: italic;">If you want to adopt this cat or get more information contact our user <span style="font-weight: bold">{{cat.userUsername}}</span> on phone number: <span style="font-weight: bold">0{{cat.userPhone}}</span></p>
+	</div><br>
+	<button ng-click="back()" class="btn">Back</button><br><br>
+</div>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link href="/assets/css/bootstrap.css" rel="stylesheet">
+	<link href="/app/css/moje.css" rel="stylesheet">
+	<script type="text/javascript" src="/assets/js/angular.min.js"></script>
+	<script type="text/javascript" src="/assets/js/angular-route.min.js"></script>
+	<script type="text/javascript" src="/app/js/main.js"></script>
+	<title>Cat Adoption</title>
+</head>
+<body ng-app="catAdoption">
+	<nav class="navbar navbar-light bg-primary">
+  		<div class="container">
+	 		<div class="navbar-header">
+				<a href="/#!" class="navbar-brand" style="color: white">Home</a>
+			</div> 
+	 		<div class="navbar-header">
+				<a href="/#!/login" class="navbar-brand" style="color: white">Log In</a>
+			</div>	
+	 		<div class="navbar-header">
+				<a href="/#!/register" class="navbar-brand" style="color: white">Register</a>
+			</div>	
+	 		<div class="navbar-header">
+				<a href="/#!/profile" class="navbar-brand" style="color: white">My Account</a>
+			</div>				
+  		</div>
+	</nav>
+	<div ng-view class="container">
+
+	</div>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="/assets/js/bootstrap.js"></script>
+</body>
+</html>

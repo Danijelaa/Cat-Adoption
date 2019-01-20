@@ -1,0 +1,80 @@
+<div ng-controller="profileController">
+	<button ng-click="logout()" class="btn btn-primary">Log out</button><br><br>
+	<p>Welcome, <span style="font-weight: bold">{{user}}</span>.</p>
+	<div class="row">
+		<div class="col-lg-5 col-md-7 col-sm-5 col-xs-11 margin-left" id="backgroundAdd">
+			<h3>Add cat</h3>
+			<form enctype="multipart/form-data">
+				<div class="row">
+					<div class="form-group col-xs-6">
+						<label for="nameA">Name</label>
+						<input type="text" ng-model="newCat.name" id="nameA" class="form-control">
+					</div>
+					<div class="form-group col-xs-3">
+						<label for="sexA">Sex</label>
+						<select ng-model="newCat.sex" id="sexA" class="form-control">
+							<option value="male">male</option>
+							<option value="female">female</option>
+						</select>
+					</div>
+					<div class="form-group col-xs-3">
+						<label for="locationA">Location</label>
+						<select ng-model="newCat.locationId" id="locationA" class="form-control">
+							<option ng-repeat="l in locations" value="{{l.id}}">{{l.city}}</option>
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-xs-4">
+						<label for="breedA">Breed</label>
+						<select ng-model="newCat.breedId" id="breedA" class="form-control">
+							<option ng-repeat="b in breeds" value="{{b.id}}">{{b.title}}</option>
+						</select>
+					</div>
+					<div class="form-group col-xs-4">
+						<label for="ageA">Age</label>
+						<select ng-model="newCat.ageId" id="ageA" class="form-control">
+							<option ng-repeat="a in ages" value="{{a.id}}">{{a.title}}</option>
+						</select>
+					</div>
+					<div class="form-group col-xs-4">
+						<label for="colorA">Color</label>
+						<select ng-model="newCat.colorId" id="colorA" class="form-control">
+							<option ng-repeat="col in colors" value="{{col.id}}">{{col.title}}</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="descA">Short description</label>
+					<textarea ng-model="newCat.description" id="descA" class="form-control"></textarea>
+				</div>				
+				<div class="form-group">
+					<label for="imageToAdd">Image</label>
+					<input type="file" id="imageToAdd" accept="image/*" class="form-control-file">
+				</div>
+				<button ng-click="add()" class="btn">Add</button><br><br>
+			</form>
+		</div>
+	</div>
+	<h3 ng-hide="!hide">You have not entered any data about cats yet.</h3>
+	<div class="row" ng-hide="hide">
+		<h3>Data about cats you have entered</h3><br>
+			<div ng-repeat="c in cats" class="list col-xs-3">
+				<div class="row">
+					<h4 align="center">{{c.name}}</h4>
+					<table align="center">
+						<tr>
+							<td colspan="2"><img ng-src="data:image/jpeg;base64,{{c.image}}" id="imageList" class="img-responsive"></td>
+						</tr>
+						<tr>
+							<th colspan="2">&nbsp;</th>
+						</tr>
+						<tr>
+							<td colspan="2"><button ng-click="edit(c.id)" class="btn btn-sm btn-warning">Edit</button> <button ng-click="delete(c.id)" class="btn btn-sm btn-danger">Delete</button> <span ng-hide="c.approvedByAdmin" style="background-color: red; color: white">Not yet approved!</span></td>
+							
+						</tr>
+					</table>					
+				</div>
+			</div>	
+	</div>
+</div>

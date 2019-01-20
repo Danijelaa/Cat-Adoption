@@ -1,0 +1,33 @@
+<div ng-controller="editController">
+	<div class="row">
+		<img ng-src="data:image/jpeg;base64,{{cat.image}}" width="400" class="img-responsive">
+	</div><br><br>
+	<div class="row">
+		<div class="col-lg-6 col-md-8 col-sm-6 col-xs-12">
+			<form>
+				<div class="form-group">
+					<label for="name">Name</label>
+					<input type="text" ng-model="cat.name" id="name" class="form-control">			
+				</div>
+				<div class="row">
+					<div class="form-group col-xs-6">
+						<label for="location">Location</label>			
+						<select ng-model="cat.locationId" ng-options="l.id as l.city for l in locations" ng-init="cat.locationId={id: l.id}" id="location" class="form-control">
+						</select>			
+					</div>
+					<div class="form-group col-xs-6">
+						<label for="age">Age</label>
+						<select ng-model="cat.ageId" ng-options="a.id as a.title for a in ages" ng-init="cat.ageId={id: a.id}" id="age" class="form-control">
+						</select>			
+					</div>			
+				</div>
+				<div class="form-group">
+					<label for="desc">Short description</label>
+					<textarea ng-model="cat.description" id="desc" class="form-control"></textarea>
+				</div>
+				<button ng-click="edit()" class="btn btn-primary">Save</button>
+			</form>
+		</div>
+	</div><br><br>
+	<button ng-click="back()" class="btn">Back</button><br><br>
+</div>

@@ -1,0 +1,55 @@
+<div ng-controller="adminController">
+	<button ng-click="logout()" class="btn btn-primary">Log out</button><br><br>
+	<p>Welcome, <span style="font-weight: bold">admin</span>.</p>
+	<p ng-hide="!show">Currently there is no unapproved content.</p>
+
+	<div class="row" ng-hide="show">
+		<h3>Unapproved content:</h3>
+		<div ng-repeat="c in cats" class="list col-xs-3" id="{{c.id}}">						
+			<table align="center">
+				<tr>
+					<td colspan="2"><img ng-src="data:image/jpeg;base64,{{c.image}}" id="imageList" class="img-responsive"></td>
+				</tr>
+				<tr>
+					<th>Name</th>
+					<td>{{c.name}}</td>
+				</tr>
+				<tr>
+					<th>Sex</th>
+					<td>{{c.sex}}</td>
+				</tr>
+				<tr>
+					<th>Location</th>
+					<td>{{c.locationCity}}</td>
+				</tr>
+				<tr>
+					<th>Color</th>
+					<td>{{c.colorTitle}}</td>
+				</tr>
+				<tr>
+					<th>Breed</th>
+					<td>{{c.breedTitle}}</td>
+				</tr>
+				<tr>
+					<th>Age</th>
+					<td>{{c.ageTitle}}</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>{{c.description}}</td>
+				</tr>
+				<tr>
+					<th>User</th>
+					<td>{{c.userUsername}}</td>
+				</tr>				
+				<tr>
+					<th><button type="button" ng-click="approve(c.id)" class="btn btn-success btn-sm">Approve</button></th>
+					<th><button type="button" ng-click="delete(c.id)" class="btn btn-danger btn-sm">Delete</button></th>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+
+
+</div>
