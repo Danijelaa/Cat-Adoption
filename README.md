@@ -78,7 +78,6 @@ If you want to log in already created user account, you can type in one of the f
 
 | Field | Type |
 |-------|------|
-|id|Numeric (long)|
 |name|String|
 |sex|String (_male_ or _female_ values)|
 |colorId|Numeric (long)|
