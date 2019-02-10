@@ -23,28 +23,28 @@ IP address and port according to your configuration of MySQL server.
 4. Open browser and connect to: `localhost:8080`.
 5. Create your account or log in as admin using credentials: `admin` for username and `admin` for password.  
 If you want to log in already created user account, you can type in one of the following credentials for username and password, respectively:  
-`username1`  `password1`  
-`username2`  `password2`  
-`username3`  `password3`
+`user1`  `password1`  
+`user2`  `password2`  
+`user3`  `password3`
 
 ## REST api
 | Method | URL |Request Body (JSON)|Request Parameter(s)| Description | Authority |
 |--------|-----|-------------------|--------------------|-------------|-----------|
-|GET|`localhost:8080/api/cats`||_colorId_, _sex_, _locationId_, _breedId_, _ageId_, _page_<br>(None of the parameters is required.)|Paginated listing of all cats (approved by admin). Listed parameters enable search by color, sex, location, breed, age and page number, respectively.||
-|GET|`localhost:8080/api/cats/{id}/info`<br> _id_-type Numeric (long)|||Retreiving additional data about cat (approved by admin) with specified ID.||
-|POST  |`localhost:8080/api/users/login`|user-login*||Login to application.||
-|GET  |`localhost:8080/api/users/logout`|||Logout from application.||
-|POST  |`localhost:8080/api/users/register`|user-register*||Create an account.||
-|GET  |`localhost:8080/api/users/cats`|||Retrieving data about cats created by logged user.|user|
-|PUT  |`localhost:8080/api/users/cats/{id}`<br> _id_-type Numeric (long)|cat-update*||Updating data about cat with specified ID.|user|
-|POST  |`localhost:8080/api/users/cats`|cat-create*||Creating new cat.|user|
-|DELETE  |`localhost:8080/api/users/cats/{id}`<br> _id_-type Numeric (long)|||Deleting cat with specified ID.|admin, user|
-|GET  |`localhost:8080/api/users/cats/unapproved-content`|||Retreiving new/updated data about cats.|admin|
-|PUT  |`localhost:8080/api/users/cats/{id}/approve`<br> _id_-type Numeric (long)|||Approving new/updated data about cat with specified ID.|admin|
-|GET|`localhost:8080/api/ages`|||Retreiving all ages of cats.||
-|GET|`localhost:8080/api/breeds`|||Retreiving all breeds of cats.||
-|GET|`localhost:8080/api/colors`|||Retreiving all colors of cats.||
-|GET|`localhost:8080/api/locations`|||Retreiving all locations of cats.||
+|GET|`/api/cats`||_colorId_, _sex_, _locationId_, _breedId_, _ageId_, _page_<br>(None of the parameters is required.)|Paginated listing of all cats (approved by admin). Listed parameters enable search by color, sex, location, breed, age and page number, respectively.||
+|GET|`/api/cats/{id}/info`<br> _id_-type Numeric (long)|||Retreiving additional data about cat (approved by admin) with specified ID.||
+|POST  |`/api/users/login`|user-login*||Login to application.||
+|GET  |`/api/users/logout`|||Logout from application.||
+|POST  |`/api/users/register`|user-register*||Create an account.||
+|GET  |`/api/users/cats`|||Retrieving data about cats created by logged user.|user|
+|PUT  |`/api/users/cats/{id}`<br> _id_-type Numeric (long)|cat-update*||Updating data about cat with specified ID.|user|
+|POST  |`/api/users/cats`||_newCat_-JSON string value of cat-create* object, _image_-type byte[]|Creating new cat.|user|
+|DELETE  |`/api/users/cats/{id}`<br> _id_-type Numeric (long)|||Deleting cat with specified ID.|admin, user|
+|GET  |`/api/users/cats/unapproved-content`|||Retreiving new/updated data about cats.|admin|
+|PUT  |`/api/users/cats/{id}/approve`<br> _id_-type Numeric (long)|||Approving new/updated data about cat with specified ID.|admin|
+|GET|`/api/ages`|||Retreiving all ages of cats.||
+|GET|`/api/breeds`|||Retreiving all breeds of cats.||
+|GET|`/api/colors`|||Retreiving all colors of cats.||
+|GET|`/api/locations`|||Retreiving all locations of cats.||
 
 #### Formats of JSON objects required in request body
 *user-login 
@@ -68,7 +68,7 @@ If you want to log in already created user account, you can type in one of the f
 |-------|------|
 |id|Numeric (long)|
 |name|String|
-|sex|String (_male_ or _female_ values)|
+|sex|String (_MALE_ or _FEMALE_ values)|
 |colorId|Numeric (long)|
 |locationId|Numeric (long)|
 |breedId|Numeric (long)|
@@ -79,12 +79,11 @@ If you want to log in already created user account, you can type in one of the f
 | Field | Type |
 |-------|------|
 |name|String|
-|sex|String (_male_ or _female_ values)|
+|sex|String (_MALE_ or _FEMALE_ values)|
 |colorId|Numeric (long)|
 |locationId|Numeric (long)|
 |breedId|Numeric (long)|
 |ageId|Numeric (long)|
-|image|byte[]|
 |description|String|
 
 
