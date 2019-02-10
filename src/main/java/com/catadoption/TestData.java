@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.catadoption.enums.CatSex;
 import com.catadoption.model.Color;
 import com.catadoption.model.User;
 import com.catadoption.model.Location;
@@ -105,12 +106,12 @@ public class TestData {
 			cat.setUser(users.get((int) Math.floor(Math.random()*3)));
 			int n=(int) Math.round(Math.random()+1);
 			if(n==1){
-				pol="male";
+				pol="MALE";
 			}
 			else {
-				pol="female";
+				pol="FEMALE";
 			}
-			cat.setSex(pol);
+			cat.setSex(CatSex.valueOf(pol));
 			File slika=new File("./src/main/resources/static/pictures_of_cats/unnamed ("+j+").jpg");
 			byte[] slikaData = new byte[(int) slika.length()];
 			try {

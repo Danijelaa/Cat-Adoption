@@ -2,10 +2,14 @@ package com.catadoption.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+
+import com.catadoption.enums.CatSex;
 
 @Entity
 public class Cat {
@@ -16,8 +20,11 @@ public class Cat {
 	private Long id;
 	@Column(nullable=false)
 	private String name;
+	/*@Column(nullable=false)
+	private String sex;*/
 	@Column(nullable=false)
-	private String sex;
+	@Enumerated(EnumType.STRING)
+	private CatSex sex;
 	@ManyToOne
 	private Color color;
 	@ManyToOne
@@ -63,14 +70,21 @@ public class Cat {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getSex() {
+/*	public String getSex() {
 		return sex;
 	}
 	public void setSex(String sex) {
 		this.sex = sex;
-	}
+	}*/
+	
 	public Color getColor() {
 		return color;
+	}
+	public CatSex getSex() {
+		return sex;
+	}
+	public void setSex(CatSex sex) {
+		this.sex = sex;
 	}
 	public void setColor(Color color) {
 		this.color = color;

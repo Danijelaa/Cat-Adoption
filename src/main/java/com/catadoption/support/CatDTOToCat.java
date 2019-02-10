@@ -46,6 +46,7 @@ public class CatDTOToCat implements Converter<CatDTO, Cat> {
 				throw new IllegalArgumentException("Can not set non-existent color.");
 			}
 			cat.setColor(color.get());
+			//cat.setSex(catDto.getSex().toString());
 			cat.setSex(catDto.getSex());
 			Optional<Breed> breed=breedService.searchById(catDto.getBreedId());
 			if(!breed.isPresent()){

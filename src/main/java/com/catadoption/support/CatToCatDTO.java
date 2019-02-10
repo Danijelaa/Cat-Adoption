@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+import com.catadoption.enums.CatSex;
 import com.catadoption.model.Cat;
 import com.catadoption.web.dto.CatDTO;
 
@@ -24,6 +25,7 @@ public class CatToCatDTO implements Converter<Cat, CatDTO>{
 		catDto.setLocationId(cat.getLocation().getId());
 		catDto.setDescription(cat.getDescription());
 		catDto.setSex(cat.getSex());
+		//catDto.setSex(CatSex.valueOf(cat.getSex()));
 		catDto.setBreedId(cat.getBreed().getId());
 		catDto.setBreedTitle(cat.getBreed().getTitle());
 		catDto.setAgeId(cat.getAge().getId());
