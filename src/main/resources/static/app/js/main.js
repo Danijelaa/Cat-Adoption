@@ -317,9 +317,7 @@ app.controller("loginController", function($scope, $http, $location, $routeParam
 		}
 		$http.post("/api/users/login", $scope.user).then(
 			function success(res){
-				//alert("Uspješno ste se prijavili.");
 				localStorage.setItem("user", $scope.user.username);
-				//localStorage.setItem("user", $scope.korisnik.korisnickoIme);
 				$location.path("/profile");
 			},
 			function error(res){
@@ -339,11 +337,7 @@ app.controller("profileController", function($scope, $http, $location, $routePar
 		$location.path("/admin");
 		return;
 	}
-	// if(localStorage.getItem("user")==null || localStorage.getItem("user")==""){
-	// 	return;
-	// }
 	$scope.user=localStorage.getItem("user");
-	//$scope.korisnik=localStorage.getItem("user");
 	$scope.cats=[];
 	var urlCats="/api/users/cats";
 	var urlUsers="/api/users";
@@ -499,8 +493,6 @@ app.controller("profileController", function($scope, $http, $location, $routePar
 		$http.get(urlUsers+"/logout").then(
 			function success(){
 				localStorage.setItem("user", "");
-				//localStorage.setItem("user", "");
-				//alert("Uspjesno ste se odjavili.");
 				$location.path("/login");
 			},
 			function error(){
@@ -565,7 +557,6 @@ app.controller("adminController", function($http, $scope, $location){
 		
 		$http.delete(urlCats+"/"+id).then(
 			function succes(){
-				//alert("Uspješno ste izbrisali podatke o maci.");
 				getCats();
 			},
 			function error(res){
@@ -585,9 +576,7 @@ app.controller("adminController", function($http, $scope, $location){
 	$scope.logout=function(){
 		$http.get(urlUsers+"/logout").then(
 			function success(){
-				//localStorage.setItem("user", "");
 				localStorage.setItem("user", "");
-				//alert("Uspjesno ste se odjavili.");
 				$location.path("/login");
 			},
 			function error(){
@@ -608,7 +597,6 @@ app.config(['$routeProvider', function($routeProvider) {
 				resolve: {
 					loggedIn: function($location){
 						if(localStorage.getItem("user")==null || localStorage.getItem("user")==""){
-							//alert("Nemate dozvolu za pristup ovom sadrzaju.");
 							$location.path("/login");
 						}
 					}
@@ -628,7 +616,6 @@ app.config(['$routeProvider', function($routeProvider) {
 				resolve: {
 					loggedInAsAdmin: function($location){
 						if(localStorage.getItem("user")!="admin"){
-							//alert("Nedozvoljen pristup stranici.");
 							$location.path("/login");
 						}
 					}
@@ -639,7 +626,6 @@ app.config(['$routeProvider', function($routeProvider) {
 				resolve: {
 					loggedIn: function($location){
 						if(localStorage.getItem("user")==null || localStorage.getItem("user")==""){
-							//alert("Za pristup ovom sadrzaju morate se ulogovati.\nAko nemate nalog registrujte se.");
 							$location.path("/login");
 							return;
 						}
