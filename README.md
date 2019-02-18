@@ -13,7 +13,8 @@ This application enables:
 Backend of the application is developed in **Spring Boot** and **Spring Security** frameworks using **Hibernate** in 
 combination to **Spring Data** and frontend by using **HTML**, **CSS (Bootstrap)** and **AngularJS**. 
 Application uses MySQL database to store data.  
-**Main focus of the application is on Java backend. Frontend was used only for easier demonstration of application purpose.**
+
+**Main focus of the application is on Java backend. Frontend was used ONLY for easier demonstration of application purpose.**
 ## Installation
 1. Start MySQL server.
 2. Create database named _cat_adoption_ by command `CREATE DATABASE cat_adoption`.
