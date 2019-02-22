@@ -435,33 +435,44 @@ app.controller("profileController", function($scope, $http, $location, $routePar
 		return true;
 	};
 
+	var encodeImageInBase64=function(image, callback){
+		//var image=document.getElementById('imageToAdd').files[0];
+		var reader=new FileReader();
+
+		reader.onloadend=function() {
+		    callback(reader.result);
+		}
+ 		reader.readAsDataURL(image);
+	};
+
 	$scope.add=function(){
 		if(!validationForNewCat()){
 			return;
 		}
-		var image = document.getElementById('imageToAdd').files[0];
-	 	var fd=new FormData();
-		fd.append('newCat', JSON.stringify($scope.newCat));
-		fd.append('image', image);
-		var hrs={headers: {'Content-Type': undefined}};
-		$http.post(urlCats, fd, hrs).then(
-			function success(){
-				getCats();
-				alert("Data about cat added successfully.\nAdmin must approve content.");
-				$scope.newCat.name="";
-				$scope.newCat.description="";
-				$scope.newCat.locationId="";
-				$scope.newCat.breedId="";
-				$scope.newCat.sex="";
-				$scope.newCat.ageId="";
-				$scope.newCat.colorId="";
-				document.getElementById('imageToAdd').value="";
-			},
-			function error(){
-				alert("Error happened while adding data about cat.");
+		var image=document.getElementById('imageToAdd').files[0];
+		encodeImageInBase64(image, function(base64String){
+		$scope.newCat.imageBase64=base64String.substr(base64String.indexOf(',')+1);
 
-			}
-		);
+			$http.post(urlCats, $scope.newCat).then(
+				function success(){
+					getCats();
+					alert("Data about cat added successfully.\nAdmin must approve content.");
+					$scope.newCat.name="";
+					$scope.newCat.description="";
+					$scope.newCat.locationId="";
+					$scope.newCat.breedId="";
+					$scope.newCat.sex="";
+					$scope.newCat.ageId="";
+					$scope.newCat.colorId="";
+					document.getElementById('imageToAdd').value="";
+					$scope.newCat.imageBase64="";
+				},
+				function error(){
+					alert("Error happened while adding data about cat.");
+
+				}
+			);
+		});
 	};
 
 	$scope.edit=function(id){

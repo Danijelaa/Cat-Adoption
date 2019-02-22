@@ -6,10 +6,8 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -26,19 +24,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.catadoption.model.User;
 import com.catadoption.model.Cat;
 import com.catadoption.service.UserService;
 import com.catadoption.service.CatService;
-import com.catadoption.support.FormDataToCatDTO;
+import com.catadoption.support.CatCreatDTOToCat;
 import com.catadoption.support.UserDTOToUser;
 import com.catadoption.support.CatDTOToCat;
 import com.catadoption.support.CatToCatDTO;
+import com.catadoption.web.dto.CatCreateDTO;
 import com.catadoption.web.dto.CatDTO;
 import com.catadoption.web.dto.UserDTOLogin;
 import com.catadoption.web.dto.UserDTORegister;
@@ -58,7 +54,7 @@ public class UserApiController {
 	@Autowired
 	private CatDTOToCat toCat;
 	@Autowired
-	private FormDataToCatDTO formDataToCatDto;
+	private CatCreatDTOToCat toNewCat;
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	@Autowired
@@ -107,8 +103,6 @@ public class UserApiController {
 	ResponseEntity<List<CatDTO>> usersCats(HttpServletRequest request){
 		Principal principal=request.getUserPrincipal();
 		User user=userService.findByUsername(principal.getName());
-		//HttpHeaders hrs=new HttpHeaders();
-		//hrs.add("korisnik", user.getUsername());
 		List<Cat> mace=catService.findByUser(user.getUsername());
 		return new ResponseEntity<List<CatDTO>>(toCatDto.convert(mace), /*hrs, */HttpStatus.OK);
 	}
@@ -138,20 +132,16 @@ public class UserApiController {
 		
 		Principal principal=request.getUserPrincipal();
 		String username=principal.getName();
-		Optional<Cat> catO=catService.searchById(id);
-		if(!catO.isPresent()){
-			return new ResponseEntity<String>("Can not update non-existent cat.", HttpStatus.BAD_REQUEST);
-		}
-		if(!username.equals(catO.get().getUser().getUsername())){
-			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-		}
 		
 		Cat cat=null;
 		try {
-			cat=toCat.convert(catDtoUpdate);
+			cat=toCat.convert(catDtoUpdate, username);
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		} catch (SecurityException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 		}
 		catService.addCat(cat);
 		return new ResponseEntity<>(toCatDto.convert(cat), HttpStatus.OK);
@@ -159,23 +149,13 @@ public class UserApiController {
 	
 	@Secured("ROLE_USER")
 	@RequestMapping(method=RequestMethod.POST, value="/cats")
-	ResponseEntity<?> postCat(HttpServletRequest request, @RequestParam(required=true) String newCat, @RequestPart(required=true) MultipartFile image){
-		if(image.isEmpty() || !image.getContentType().startsWith("image")){
-			return new ResponseEntity<String>("Image content required.", HttpStatus.BAD_REQUEST);
-		}
-		CatDTO catDto=formDataToCatDto.convert(newCat);
-		if(catDto==null){
-			return new ResponseEntity<String>("Some parameters might be missing.", HttpStatus.BAD_REQUEST);
-		}
+	ResponseEntity<?> postCat(HttpServletRequest request, @Validated @RequestBody CatCreateDTO newCat){
 		Cat cat=null;
 		try {
-			cat=toCat.convert(catDto);
-		} catch (IllegalArgumentException e) {
+			cat = toNewCat.convert(newCat);
+		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-		if(!formDataToCatDto.setImage(cat, image)){
-			return new ResponseEntity<String>("Error happened while adding image.", HttpStatus.BAD_REQUEST);
 		}
 		
 		Principal principal=request.getUserPrincipal();

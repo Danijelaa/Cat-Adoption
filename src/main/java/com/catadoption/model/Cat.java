@@ -20,8 +20,6 @@ public class Cat {
 	private Long id;
 	@Column(nullable=false)
 	private String name;
-	/*@Column(nullable=false)
-	private String sex;*/
 	@Column(nullable=false)
 	@Enumerated(EnumType.STRING)
 	private CatSex sex;
@@ -70,12 +68,6 @@ public class Cat {
 	public void setName(String name) {
 		this.name = name;
 	}
-/*	public String getSex() {
-		return sex;
-	}
-	public void setSex(String sex) {
-		this.sex = sex;
-	}*/
 	
 	public Color getColor() {
 		return color;

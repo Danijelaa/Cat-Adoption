@@ -1,12 +1,8 @@
 package com.catadoption.web.dto;
 
-import javax.persistence.ElementCollection;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.catadoption.enums.CatSex;
@@ -20,15 +16,11 @@ public class CatDTO {
 	private String name;
 	@Enumerated(EnumType.STRING)
 	private CatSex sex;
-	/*@NotBlank
-	private String sex;*/
-	@NotNull
 	private Long colorId;
 	private String colorTitle;
 	@NotNull
 	private Long locationId;
 	private String locationCity;
-	@NotNull
 	private Long breedId;
 	private String breedTitle;
 	@NotNull
@@ -36,7 +28,6 @@ public class CatDTO {
 	private String ageTitle;
 	@NotBlank
 	private String description;
-	//@NotBlank
 	private String userUsername;
 	private Long userPhone;
 	private byte[] image;
