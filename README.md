@@ -39,7 +39,7 @@ If you want to log in already created user account, you can type in one of the f
 |POST  |`/api/users/register`|user-register*||Create an account.||
 |GET  |`/api/users/cats`|||Retrieving data about cats created by logged user.|user|
 |PUT  |`/api/users/cats/{id}`<br> _id_-type Numeric (long)|cat-update*||Updating data about cat with specified ID.|user|
-|POST  |`/api/users/cats`||_newCat_-JSON string value of cat-create* object, _image_-type byte[]|Creating new cat.|user|
+|POST  |`/api/users/cats`|*cat-create||Creating new cat.|user|
 |DELETE  |`/api/users/cats/{id}`<br> _id_-type Numeric (long)|||Deleting cat with specified ID.|admin, user|
 |GET  |`/api/users/cats/unapproved-content`|||Retreiving new/updated data about cats.|admin|
 |PUT  |`/api/users/cats/{id}/approve`<br> _id_-type Numeric (long)|||Approving new/updated data about cat with specified ID.|admin|
@@ -70,11 +70,9 @@ If you want to log in already created user account, you can type in one of the f
 |-------|------|
 |id|Numeric (long)|
 |name|String|
-|sex|String (_MALE_ or _FEMALE_ values)|
-|colorId|Numeric (long)|
 |locationId|Numeric (long)|
-|breedId|Numeric (long)|
 |ageId|Numeric (long)|
+|description|String|
 
 *cat-create
 
